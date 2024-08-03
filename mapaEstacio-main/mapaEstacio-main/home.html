@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa da Estácio Castanhal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="imagem/fundo2.png" alt="Descrição da Imagem" class="responsive-image">
+
+        <div class="icon icon-1" style="top: 42%; left: 39.5%;" data-title="Administração e Ciências Contábeis" data-info="Local: Bloco B - Sala de Provas e Tutoria">
+            <span>3</span></div>
+        <div class="icon icon-2" style="top: 26.5%; left: 51.5%;" data-title="Análise e Desenvolvimento de Sistemas" data-info="Local: Bloco I - Lab. 6 e 5 de Informática">
+            <span>9</span>
+        </div>        
+        <div class="icon icon-3" style="top: 50.5%; left: 49%;" data-title="Direito" data-info="Local: Bloco A - NPJ">
+            <span>1</span>
+        </div>
+        <div class="icon icon-4" style="top: 28%; left: 36%;" data-title="Educação Física" data-info="Local: Bloco G - Lab. de Anatomia">
+            <span>8</span>
+        </div>
+        <div class="icon icon-5" style="top: 33.5%; left: 27%;" data-title="Enfermagem" data-info="Local: Bloco F - Lab. de Semiologia 2">
+            <span>7</span>
+        </div>
+        <div class="icon icon-6" style="top: 3.5%; left: 65.7%;" data-title="Engenharia Civil" data-info="Local: Bloco J - Lab. Construção Civil">
+            <span>11</span>
+        </div>
+        <div class="icon icon-7" style="top: 28%; left: 64.7%;" data-title="Farmácia" data-info="Local: Bloco H - Biblioteca">
+            <span>10</span>
+        </div>
+        <div class="icon icon-11" style="top: 36%; left: 32.5%;" data-title="Biomedicina" data-info="Local: Bloco F - Lab. de Bioquimica (1 andar)">
+            <span>5</span>
+        </div>
+        <div class="icon icon-12" style="top: 33%; left: 30%;" data-title="Estética" data-info="Local: Bloco F - Lab. de Eletrotermofototerapia">
+            <span>6</span>
+        </div>
+        <div class="icon icon-8" style="top: 42%; left: 25.5%;" data-title="Fisioterapia" data-info="Local: Bloco C - Clínica Escola">
+            <span>2</span>
+        </div>
+        <div class="icon icon-9" style="top: 35%; left: 36%;" data-title="Psicologia" data-info="Local: Bloco F - Lab. LAMP e LOB">
+            <span>4</span>
+        </div>
+        <div class="icon icon-10" style="top: 54%; left: 32.7%;" data-title="Entrada Principal" data-info="Local: Portão da BR">
+            <span>E</span>
+        </div>
+        <div class="icon icon-10" style="top: 32%; left: 45%;" data-title="Área de Convivência" data-info="Local: Pátio Principal">
+            <span>A</span>
+        </div>
+        <div class="icon icon-10" style="top: 13%; left: 71%;" data-title="Salas de Aula" data-info="Local: Bloco J">
+            <span>S</span>
+        </div>
+
+
+        <div class="popup" id="popup">
+            <h5 id="popup-title"></h5>
+            <p id="popup-info"></p>
+            <button class="close-btn" onclick="closePopup()">Fechar</button>
+        </div>
+   
+    </div>
+
+    <div class="footer">
+        Desenvolvido pelo curso de Análise e Desenvolvimento de Sistemas &copy; 2024
+    </div>
+
+    <script>
+        const icons = document.querySelectorAll('.icon');
+        const popup = document.getElementById('popup');
+        const popupTitle = document.getElementById('popup-title');
+        const popupInfo = document.getElementById('popup-info');
+
+        icons.forEach(icon => {
+            icon.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent the document click handler from hiding the popup immediately
+
+                const iconRect = this.getBoundingClientRect();
+                const popupRect = popup.getBoundingClientRect();
+                
+                // Calculate the position based on the center of the window
+                let left = (window.innerWidth * 0.30) - (popupRect.width / 2);
+                let top = (window.innerHeight / 2) - (popupRect.height / 2);
+                
+                // Adjust the position if the popup goes beyond the right edge
+                if (left + popupRect.width > window.innerWidth) {
+                    left = window.innerWidth - popupRect.width - 1;
+                }
+                
+                // Adjust the position if the popup goes beyond the bottom edge
+                if (top + popupRect.height > window.innerHeight) {
+                    top = window.innerHeight - popupRect.height - 10;
+                }
+                
+                // Adjust the position if the popup goes beyond the left edge
+                if (left < 0) {
+                    left = 10;
+                }
+                
+                // Adjust the position if the popup goes beyond the top edge
+                if (top < 0) {
+                    top = 10;
+                }
+                
+                popupTitle.textContent = this.getAttribute('data-title');
+                popupInfo.textContent = this.getAttribute('data-info');
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+                popup.style.display = 'block';
+            });
+        });
+
+        function closePopup() {
+            popup.style.display = 'none';
+        }
+
+        // Hide the popup when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!popup.contains(event.target) && !Array.from(icons).includes(event.target)) {
+                popup.style.display = 'none';
+            }
+        });
+    </script>
+    
+    
+</body>
+</html>
