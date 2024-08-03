@@ -7,6 +7,8 @@ body, html {
     justify-content: center;
     align-items: center;
     background: #008080;
+    transform: scale(1.2); /* Ajuste o valor conforme necessário */
+    transform-origin: center; /* Ajuste a origem da transformação se necessário */
 }
 
 .container {
@@ -19,9 +21,7 @@ body, html {
 .background-image {
     width: 100%;
     height: auto; /* Mantém a proporção da imagem */
-    display: block; /* Remove o espaçamento embaixo da imagem 
-    justify-content: center;
-    align-items: center; /* Centraliza a imagem verticalmente */
+    display: block; /* Remove o espaçamento embaixo da imagem */
 }
 
 .responsive-image {
@@ -29,7 +29,9 @@ body, html {
     height: auto; /* Ajusta a altura automaticamente para manter a proporção */
     display: block; /* Remove o espaçamento embaixo da imagem */
 }
+
 /**************************************************************************/
+
 .icon {
     position: absolute;
     width: 12px;
@@ -52,7 +54,7 @@ body, html {
 .icon-6 { background-color: #000080; } /*eng civil*/
 .icon-7 { background-color: #FF8C00; } /*farmacia*/
 .icon-8 { background-color: #008000; } /*fisioterapia*/
-.icon-9 { background-color: #8B008B; } /*pisicologia*/
+.icon-9 { background-color: #8B008B; } /*psicologia*/
 .icon-10 { background-color: #000000; } 
 .icon-11 { background-color: #8A0829; } /*biomedicina*/
 .icon-12 { background-color: #0B4C5F; } /*estetica*/
