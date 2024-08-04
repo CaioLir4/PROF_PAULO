@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="{{ url_for('static', filename='fundo.jpg') }}" alt="Descrição da Imagem" class="responsive-image">
+        <img src="{{ url_for('static', filename='fundo2.png') }}" alt="Descrição da Imagem" class="responsive-image">
 
         <div class="icon icon-1" style="top: 42%; left: 39.5%;" data-title="Administração e Ciências Contábeis" data-info="Local: Bloco B - Sala de Provas e Tutoria">
             <span>3</span>
@@ -72,34 +72,9 @@
 
         icons.forEach(icon => {
             icon.addEventListener('click', function(event) {
-                event.stopPropagation();
-
-                const iconRect = this.getBoundingClientRect();
-                const popupRect = popup.getBoundingClientRect();
-
-                let left = (window.innerWidth * 0.30) - (popupRect.width / 2);
-                let top = (window.innerHeight / 2) - (popupRect.height / 2);
-
-                if (left + popupRect.width > window.innerWidth) {
-                    left = window.innerWidth - popupRect.width - 1;
-                }
-
-                if (top + popupRect.height > window.innerHeight) {
-                    top = window.innerHeight - popupRect.height - 10;
-                }
-
-                if (left < 0) {
-                    left = 10;
-                }
-
-                if (top < 0) {
-                    top = 10;
-                }
-
+                event.stopPropagation(); // Prevent the document click handler from hiding the popup immediately
                 popupTitle.textContent = this.getAttribute('data-title');
                 popupInfo.textContent = this.getAttribute('data-info');
-                popup.style.left = `${left}px`;
-                popup.style.top = `${top}px`;
                 popup.style.display = 'block';
             });
         });
@@ -108,11 +83,16 @@
             popup.style.display = 'none';
         }
 
+        // Hide the popup when clicking outside
         document.addEventListener('click', function(event) {
             if (!popup.contains(event.target) && !Array.from(icons).includes(event.target)) {
                 popup.style.display = 'none';
             }
         });
+    </script>
+
+    <script>
+        document.body.style.zoom = "220%";
     </script>
 </body>
 </html>
